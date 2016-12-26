@@ -64,8 +64,6 @@ public:
   }
 };
 
-
-
 class NoMainClassError : public DecafError
 {
 public:
@@ -583,6 +581,8 @@ public:
     }
 };
 
+
+
 class CompNotIntTypeError : public DecafError
 {
     Location const &loc;
@@ -717,5 +717,4 @@ public:
         return ss.str();
     }
 };
-#endif /* end of include guard: _ERROR_H_
- */
+#endif

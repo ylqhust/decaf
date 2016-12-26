@@ -301,7 +301,6 @@ private:
             }
         }
     }
-
     void fieldsCheck()
     {
         #ifdef _YLQ_DEBUG_

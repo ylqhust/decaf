@@ -42,10 +42,11 @@ public:
 class VariableSymbolTable : public SymbolTable
 {
 public:
-  shared_ptr<SymbolType> type;
-  string const name;
+  shared_ptr<SymbolType> type; //变量类型
+  string const name;//变量名
 public:
-  VariableSymbolTable(string const &name,Location const &loc):SymbolTable::SymbolTable(loc,ST_VAR),name(name){}
+  VariableSymbolTable(string const &name,Location const &loc)
+  :SymbolTable::SymbolTable(loc,ST_VAR),name(name){}
   void setType(shared_ptr<SymbolType> &t)
   {
     type.swap(t);
@@ -57,7 +58,7 @@ class LocalSymbolTable : public SymbolTable
 public:
   vector<shared_ptr<VariableSymbolTable> > vvst;//局部中定义的变量
   vector<shared_ptr<LocalSymbolTable> > vlst;//局部中嵌入的局部
-  vector<shared_ptr<SymbolTable> > vsst;
+  vector<shared_ptr<SymbolTable> > vsst;//按照先后顺序排列的符号表，上面两者的结合
   bool returnStmtMustCanBeExec=false;//当前局部作用域中的 return 语句是否一定能被执行，如果没有 return 语句，那就是 false，如果有
   //return 语句，还要看 return 语句的出现形式
 public:
@@ -74,6 +75,7 @@ public:
       vsst.push_back(lst);
   }
 
+  //通过变量的名字和出现的位置在符号表中查找该变量，如果在当前符号表中没有找到的话，就在父类中继续查找
   virtual shared_ptr<SymbolTable> findVSTByNameAndLoc(string const &name,Location const &loc) const
   {
       for(auto pos=vvst.begin();pos!=vvst.end();++pos)
@@ -97,20 +99,9 @@ public:
   FunctionSymbolTable(bool isStatic,string const &name,bool isMain,Location const &loc)
   :SymbolTable::SymbolTable(loc,ST_FUNCTION),isStatic(isStatic),name(name),isMain(isMain){}
 
-  void setReturnType(shared_ptr<SymbolType> &rt)
-  {
-    returnType.swap(rt);
-  }
-
-  void addFormal(shared_ptr<VariableSymbolTable> &vst)
-  {
-    vvst.push_back(vst);
-  }
-
-  void setLocalSymbolTable(shared_ptr<LocalSymbolTable> &lst)
-  {
-    localST.swap(lst);
-  }
+  void setReturnType(shared_ptr<SymbolType> &rt){returnType.swap(rt);}
+  void addFormal(shared_ptr<VariableSymbolTable> &vst){vvst.push_back(vst);}
+  void setLocalSymbolTable(shared_ptr<LocalSymbolTable> &lst){localST.swap(lst);}
 
   virtual shared_ptr<SymbolTable> findVSTByNameAndLoc(string const &name,Location const &loc)const
   {
@@ -127,26 +118,19 @@ public:
 class ClassSymbolTable : public SymbolTable
 {
 public:
-  string const name;
-  bool const haveParent;
-  bool const isMain;
-  string const parentName;
-  shared_ptr<ClassSymbolTable> parentClass;
+  string const name;//类名
+  bool const haveParent;//是否有父类
+  bool const isMain;//是否是 类 Main
+  string const parentName;//如果有父类，那么这个就是父类的名字
+  shared_ptr<ClassSymbolTable> parentClass;//如果有父类，那么这个就是父类的指针
   vector<shared_ptr<VariableSymbolTable> > vvst;//变量符号表数组
   vector<shared_ptr<FunctionSymbolTable> > vfst;//函数符号表数组
 public:
   ClassSymbolTable(string const &name,bool haveParent,bool isMain,string const &parentName,Location const &loc)
   :SymbolTable::SymbolTable(loc,ST_CLASS),name(name),haveParent(haveParent),isMain(isMain),parentName(parentName){}
 
-  void addVST(shared_ptr<VariableSymbolTable> &vst)
-  {
-    vvst.push_back(vst);
-  }
-
-  void addFST(shared_ptr<FunctionSymbolTable> &fst)
-  {
-    vfst.push_back(fst);
-  }
+  void addVST(shared_ptr<VariableSymbolTable> &vst){vvst.push_back(vst);}
+  void addFST(shared_ptr<FunctionSymbolTable> &fst){vfst.push_back(fst);}
   shared_ptr<VariableSymbolTable> findVSTByName(string const &name) const
   {
       //首先在当前类中找
@@ -161,6 +145,7 @@ public:
       return  *ssv;
   }
 
+  //通过函数名查找函数的符号表，如果在当前类没有找到，那么就在父类中找，如果都没有，那么就返回 一个空的指针
   shared_ptr<FunctionSymbolTable> findFSTByName(string const &name) const
   {
       for(auto pos=vfst.begin();pos!=vfst.end();++pos)

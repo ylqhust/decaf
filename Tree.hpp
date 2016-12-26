@@ -18,11 +18,6 @@ enum Kind{
   TWO_EXPR_AND_AND,TWO_EXPR_OR_OR
 };
 
-/**
-enum ExprType{
-    ET_INT,ET_STRING,ET_BOOL,ET_VOID,ET_CLASS,ET_ARRAY,ET_UNKNOW
-};
-**/
 typedef SymbolType ExprType;
 typedef BuildInSymbolType BuildInExprType;
 typedef ClassSymbolType ClassExprType;
