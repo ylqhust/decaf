@@ -1,0 +1,9 @@
+class Main
+{
+    static void main()
+    {
+        int [] a;
+        a=new int[10];
+        Print(a[10]);
+    }
+}

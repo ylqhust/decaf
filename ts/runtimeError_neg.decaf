@@ -1,0 +1,10 @@
+class Main
+{
+    static void main()
+    {
+        int [] a;
+        int b;
+        b=-9;
+        a=new int[b];
+    }
+}

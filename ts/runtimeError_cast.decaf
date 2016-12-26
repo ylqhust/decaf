@@ -1,0 +1,14 @@
+class A
+{}
+class B extends A
+{}
+class Main
+{
+    static void main()
+    {
+        class A a;
+        a=new A();
+        class B b;
+        b=(class B)a;
+    }
+}

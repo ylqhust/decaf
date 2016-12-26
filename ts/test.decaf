@@ -1,0 +1,137 @@
+class A
+{
+    void print()
+    {
+        Print("A\n");
+    }
+}
+
+class B extends A
+{
+    void print()
+    {
+        Print("B\n");
+    }
+}
+
+class Main
+{
+    int a;
+    int b;
+    class Main forTest()
+    {
+        Print("\n-----forTest-----\n");
+        int a;
+        int b;
+        b=10;
+        for(a=0;a<b;a=a+1)
+            if(a>2)
+                break;
+            else
+                Print(a,"\n");
+        return this;
+    }
+
+    class Main whileTest()
+    {
+        Print("\n-----whileTest-----\n");
+        this.a=-1;
+        this.b=10;
+        while(this.a<this.b)
+        {
+            if(a>2)
+                return this;
+            Print("this.a=",a,"\n");
+            a=a+1;
+        }
+        return this;
+    }
+
+    class Main inputTest()
+    {
+        Print("\n-----inputTest-----\n");
+        int a;
+        string str;
+        Print("Input a integer:");
+        a=ReadInteger();
+        Print("Input a string:");
+        str=ReadLine();
+        Print("input integer: ",a,"\n","input string: ",str,"\n");
+        return this;
+    }
+
+    class Main aoaTest()
+    {
+        Print("\n-----aoaTest-----\n");
+        class A [][] a;
+        a=new class A[][2];
+        a[0]=new class A[1];
+        a[1]=new class A[2];
+        a[0][0]=new  A();
+        a[1][0]=new A();
+        a[1][1]=new B();
+        a[0][0].print();
+        a[1][0].print();
+        a[1][1].print();
+        return this;
+    }
+
+    class Main instanceofTest()
+    {
+        Print("\n-----instanceofTest-----\n");
+        class A a;
+        class A b;
+        a=new A();
+        b=new B();
+        Print(instanceof(a,A),"\n");
+        Print(instanceof(a,B),"\n");
+        Print(instanceof(b,A),"\n");
+        Print(instanceof(b,B),"\n");
+        return this;
+    }
+
+    class Main operationTest()
+    {
+        Print("\n-----operationTest-----\n");
+        this.a=3;
+        this.b=2;
+        Print("a=",this.a,"\n");
+        Print("b=",this.b,"\n");
+        Print("a+b=",a+b,"\n");
+        Print("a-b=",a-b,"\n");
+        Print("a/b=",a/b,"\n");
+        Print("a%b=",a%b,"\n");
+        Print("a<b : ",a<b,"\n");
+        Print("a<=b ",a<=b,"\n");
+        Print("a>b ",a>b,"\n");
+        Print("a>=b ",a>=b,"\n");
+        Print("a==b ",a==b,"\n");
+        Print("a!=b ",a!=b,"\n");
+        bool c;
+        c=true;
+        bool d;
+        d=false;
+        Print("bool c=",c,"\n");
+        Print("bool d=",d,"\n");
+        Print("c && d ",c&&d,"\n");
+        Print("c || d ",c||d,"\n");
+        Print("!c ",!c,"\n");
+        return this;
+    }
+
+    static void classCastTest()
+    {
+        Print("\n-----classCastTest-----\n");
+        class A a;
+        class B b;
+        b=new B();
+        a=(class A)b;
+        a.print();
+    }
+
+    static void main()
+    {
+        new Main().forTest().whileTest().inputTest().aoaTest().instanceofTest().operationTest();
+        classCastTest();
+    }
+}

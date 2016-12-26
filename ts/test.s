@@ -1,0 +1,2385 @@
+ .section .data
+ .comm _Temp,1812,4
+ .section .rodata
+ .globl	A
+ .align 4
+ .type	A, @object
+ .size	A,8
+A:
+ .long	_A_print
+ .long	0
+
+ .globl	B
+ .align 4
+ .type	B, @object
+ .size	B,8
+B:
+ .long	_B_print
+ .long	0
+
+ .globl	Main
+ .align 4
+ .type	Main, @object
+ .size	Main,28
+Main:
+ .long	_Main_forTest
+ .long	_Main_whileTest
+ .long	_Main_inputTest
+ .long	_Main_aoaTest
+ .long	_Main_instanceofTest
+ .long	_Main_operationTest
+ .long	0
+
+.LStr.S15:
+ .string " 第%d行数组访问越界\n"
+.LStr.S36:
+ .string "!c "
+.LStr.S4:
+ .string "%d"
+.LStr.S1:
+ .string "%s"
+.LStr.S0:
+ .string "A\n"
+.LStr.S2:
+ .string "B\n"
+.LStr.S9:
+ .string "Input a integer:"
+.LStr.S10:
+ .string "Input a string:"
+.LStr.S5:
+ .string "\n"
+.LStr.S13:
+ .string "\n-----aoaTest-----\n"
+.LStr.S37:
+ .string "\n-----classCastTest-----\n"
+.LStr.S3:
+ .string "\n-----forTest-----\n"
+.LStr.S8:
+ .string "\n-----inputTest-----\n"
+.LStr.S16:
+ .string "\n-----instanceofTest-----\n"
+.LStr.S19:
+ .string "\n-----operationTest-----\n"
+.LStr.S6:
+ .string "\n-----whileTest-----\n"
+.LStr.S31:
+ .string "a!=b "
+.LStr.S25:
+ .string "a%b="
+.LStr.S22:
+ .string "a+b="
+.LStr.S23:
+ .string "a-b="
+.LStr.S24:
+ .string "a/b="
+.LStr.S27:
+ .string "a<=b "
+.LStr.S26:
+ .string "a<b : "
+.LStr.S20:
+ .string "a="
+.LStr.S30:
+ .string "a==b "
+.LStr.S29:
+ .string "a>=b "
+.LStr.S28:
+ .string "a>b "
+.LStr.S21:
+ .string "b="
+.LStr.S32:
+ .string "bool c="
+.LStr.S33:
+ .string "bool d="
+.LStr.S34:
+ .string "c && d "
+.LStr.S35:
+ .string "c || d "
+.LStr.S17:
+ .string "false"
+.LStr.S11:
+ .string "input integer: "
+.LStr.S12:
+ .string "input string: "
+.LStr.S7:
+ .string "this.a="
+.LStr.S18:
+ .string "true"
+.LStr.S14:
+ .string "第%d行不能用负数初始化数组\n"
+.LStr.S38:
+ .string "第%d行类型转换异常\n"
+ .section .text
+ .globl _A_print
+ .type _A_print,@function
+_A_print:
+pushl	%ebp
+movl	%esp,%ebp
+leal	.LStr.S0,%edx
+movl	%edx,(_Temp+32)
+pushl	(_Temp+32)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+28)
+pushl	(_Temp+28)
+call	printf
+addl	$8,%esp
+popl	%ebp
+ret
+
+ .globl _B_print
+ .type _B_print,@function
+_B_print:
+pushl	%ebp
+movl	%esp,%ebp
+leal	.LStr.S2,%edx
+movl	%edx,(_Temp+44)
+pushl	(_Temp+44)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+40)
+pushl	(_Temp+40)
+call	printf
+addl	$8,%esp
+popl	%ebp
+ret
+
+ .globl _Main_forTest
+ .type _Main_forTest,@function
+_Main_forTest:
+pushl	%ebp
+movl	%esp,%ebp
+subl	$8,%esp
+leal	.LStr.S3,%edx
+movl	%edx,(_Temp+56)
+pushl	(_Temp+56)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+52)
+pushl	(_Temp+52)
+call	printf
+addl	$8,%esp
+movl	$10,%eax
+movl	%eax,-8(%ebp)
+movl	$0,%eax
+movl	%eax,-4(%ebp)
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+72)
+movl	-8(%ebp),%eax
+movl	%eax,(_Temp+76)
+movl	(_Temp+72),%eax
+cmpl	(_Temp+76),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+68)
+movl	(_Temp+68),%edx
+cmpl	$1,%edx
+jne	.L1
+.L0:
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+88)
+movl	(_Temp+88),%eax
+cmpl	$2,%eax
+setg	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+84)
+movl	(_Temp+84),%edx
+cmpl	$1,%edx
+jne	.L2
+jmp	.L1
+jmp	.L3
+.L2:
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+100)
+pushl	(_Temp+100)
+leal	.LStr.S4,%edx
+movl	%edx,(_Temp+104)
+pushl	(_Temp+104)
+call	printf
+addl	$8,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+108)
+pushl	(_Temp+108)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+104)
+pushl	(_Temp+104)
+call	printf
+addl	$8,%esp
+.L3:
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+116)
+movl	(_Temp+116),%edx
+addl	$1,%edx
+movl	%edx,(_Temp+112)
+movl	(_Temp+112),%eax
+movl	%eax,-4(%ebp)
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+132)
+movl	-8(%ebp),%eax
+movl	%eax,(_Temp+136)
+movl	(_Temp+132),%eax
+cmpl	(_Temp+136),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+128)
+movl	(_Temp+128),%edx
+cmpl	$0,%edx
+jne	.L0
+.L1:
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+140)
+addl	$8,%esp
+popl	%ebp
+movl	(_Temp+140),%eax
+ret
+addl	$8,%esp
+popl	%ebp
+ret
+
+ .globl _Main_whileTest
+ .type _Main_whileTest,@function
+_Main_whileTest:
+pushl	%ebp
+movl	%esp,%ebp
+leal	.LStr.S6,%edx
+movl	%edx,(_Temp+152)
+pushl	(_Temp+152)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+148)
+pushl	(_Temp+148)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+156)
+movl	$-1,%eax
+movl	$4,%ebx
+movl	(_Temp+156),%esi
+movl	%eax,(%ebx,%esi)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+168)
+movl	$10,%eax
+movl	$8,%ebx
+movl	(_Temp+168),%esi
+movl	%eax,(%ebx,%esi)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+176)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+180)
+movl	$4,%ebx
+movl	(_Temp+176),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+188)
+movl	$8,%ebx
+movl	(_Temp+180),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+192)
+movl	(_Temp+188),%eax
+cmpl	(_Temp+192),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+184)
+movl	(_Temp+184),%edx
+cmpl	$1,%edx
+jne	.L5
+.L4:
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+200)
+movl	$4,%ebx
+movl	(_Temp+200),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+208)
+movl	(_Temp+208),%eax
+cmpl	$2,%eax
+setg	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+204)
+movl	(_Temp+204),%edx
+cmpl	$1,%edx
+jne	.L7
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+220)
+popl	%ebp
+movl	(_Temp+220),%eax
+ret
+jmp	.L7
+.L7:
+leal	.LStr.S7,%edx
+movl	%edx,(_Temp+232)
+pushl	(_Temp+232)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+228)
+pushl	(_Temp+228)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+236)
+movl	$4,%ebx
+movl	(_Temp+236),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+232)
+pushl	(_Temp+232)
+leal	.LStr.S4,%edx
+movl	%edx,(_Temp+228)
+pushl	(_Temp+228)
+call	printf
+addl	$8,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+240)
+pushl	(_Temp+240)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+228)
+pushl	(_Temp+228)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+244)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+248)
+movl	$4,%ebx
+movl	(_Temp+248),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+256)
+movl	(_Temp+256),%edx
+addl	$1,%edx
+movl	%edx,(_Temp+252)
+movl	(_Temp+252),%eax
+movl	$4,%ebx
+movl	(_Temp+244),%esi
+movl	%eax,(%ebx,%esi)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+268)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+272)
+movl	$4,%ebx
+movl	(_Temp+268),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+280)
+movl	$8,%ebx
+movl	(_Temp+272),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+284)
+movl	(_Temp+280),%eax
+cmpl	(_Temp+284),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+276)
+movl	(_Temp+276),%edx
+cmpl	$0,%edx
+jne	.L4
+.L5:
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+288)
+popl	%ebp
+movl	(_Temp+288),%eax
+ret
+popl	%ebp
+ret
+
+ .globl _Main_inputTest
+ .type _Main_inputTest,@function
+_Main_inputTest:
+pushl	%ebp
+movl	%esp,%ebp
+subl	$8,%esp
+leal	.LStr.S8,%edx
+movl	%edx,(_Temp+300)
+pushl	(_Temp+300)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+296)
+pushl	(_Temp+296)
+call	printf
+addl	$8,%esp
+leal	.LStr.S9,%edx
+movl	%edx,(_Temp+312)
+pushl	(_Temp+312)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+308)
+pushl	(_Temp+308)
+call	printf
+addl	$8,%esp
+pushl	$4
+call	malloc
+movl	%eax,(_Temp+320)
+pushl	(_Temp+320)
+leal	.LStr.S4,%edx
+movl	%edx,(_Temp+324)
+pushl	(_Temp+324)
+call	scanf
+addl	$12,%esp
+movl	$0,%ebx
+movl	(_Temp+320),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+316)
+movl	(_Temp+316),%eax
+movl	%eax,-4(%ebp)
+leal	.LStr.S10,%edx
+movl	%edx,(_Temp+340)
+pushl	(_Temp+340)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+336)
+pushl	(_Temp+336)
+call	printf
+addl	$8,%esp
+pushl	$1024
+call	malloc
+movl	%eax,(_Temp+344)
+pushl	(_Temp+344)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+348)
+pushl	(_Temp+348)
+call	scanf
+addl	$12,%esp
+movl	(_Temp+344),%eax
+movl	%eax,-8(%ebp)
+leal	.LStr.S11,%edx
+movl	%edx,(_Temp+364)
+pushl	(_Temp+364)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+360)
+pushl	(_Temp+360)
+call	printf
+addl	$8,%esp
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+364)
+pushl	(_Temp+364)
+leal	.LStr.S4,%edx
+movl	%edx,(_Temp+360)
+pushl	(_Temp+360)
+call	printf
+addl	$8,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+368)
+pushl	(_Temp+368)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+360)
+pushl	(_Temp+360)
+call	printf
+addl	$8,%esp
+leal	.LStr.S12,%edx
+movl	%edx,(_Temp+372)
+pushl	(_Temp+372)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+360)
+pushl	(_Temp+360)
+call	printf
+addl	$8,%esp
+movl	-8(%ebp),%eax
+movl	%eax,(_Temp+372)
+pushl	(_Temp+372)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+360)
+pushl	(_Temp+360)
+call	printf
+addl	$8,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+376)
+pushl	(_Temp+376)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+360)
+pushl	(_Temp+360)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+380)
+addl	$8,%esp
+popl	%ebp
+movl	(_Temp+380),%eax
+ret
+addl	$8,%esp
+popl	%ebp
+ret
+
+ .globl _Main_aoaTest
+ .type _Main_aoaTest,@function
+_Main_aoaTest:
+pushl	%ebp
+movl	%esp,%ebp
+subl	$4,%esp
+leal	.LStr.S13,%edx
+movl	%edx,(_Temp+392)
+pushl	(_Temp+392)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+388)
+pushl	(_Temp+388)
+call	printf
+addl	$8,%esp
+jmp	.L8
+pushl	$67
+leal	.LStr.S14,%edx
+movl	%edx,(_Temp+404)
+pushl	(_Temp+404)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L8:
+movl	$2,%edx
+addl	$1,%edx
+movl	%edx,(_Temp+412)
+movl	(_Temp+412),%edx
+imull	$4,%edx
+movl	%edx,(_Temp+412)
+pushl	(_Temp+412)
+call	malloc
+movl	%eax,(_Temp+408)
+addl	$4,%esp
+movl	(_Temp+412),%eax
+movl	$4,%ecx
+cltd
+idivl	%ecx
+movl	%eax,(_Temp+412)
+movl	(_Temp+412),%edx
+subl	$1,%edx
+movl	%edx,(_Temp+412)
+movl	(_Temp+412),%eax
+movl	$0,%ebx
+movl	(_Temp+408),%esi
+movl	%eax,(%ebx,%esi)
+movl	(_Temp+408),%edx
+addl	$4,%edx
+movl	%edx,(_Temp+396)
+movl	(_Temp+396),%eax
+movl	%eax,-4(%ebp)
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+420)
+movl	$-4,%ebx
+movl	(_Temp+420),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+424)
+movl	$0,%eax
+cmpl	(_Temp+424),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+432)
+movl	$0,%eax
+cmpl	$0,%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+436)
+movl	(_Temp+432),%eax
+cmpl	$0,%eax
+je	.L56
+movl	(_Temp+436),%eax
+cmpl	$0,%eax
+je	.L56
+movl	$1,%eax
+jmp	.L57
+.L56:
+movl	$0,%eax
+.L57:
+movl	%eax,(_Temp+440)
+movl	(_Temp+440),%edx
+cmpl	$0,%edx
+jne	.L9
+pushl	$68
+leal	.LStr.S15,%edx
+movl	%edx,(_Temp+444)
+pushl	(_Temp+444)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L9:
+movl	$0,%edx
+imull	$4,%edx
+movl	%edx,(_Temp+448)
+jmp	.L10
+pushl	$68
+leal	.LStr.S14,%edx
+movl	%edx,(_Temp+460)
+pushl	(_Temp+460)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L10:
+movl	$1,%edx
+addl	$1,%edx
+movl	%edx,(_Temp+468)
+movl	(_Temp+468),%edx
+imull	$4,%edx
+movl	%edx,(_Temp+468)
+pushl	(_Temp+468)
+call	malloc
+movl	%eax,(_Temp+464)
+addl	$4,%esp
+movl	(_Temp+468),%eax
+movl	$4,%ecx
+cltd
+idivl	%ecx
+movl	%eax,(_Temp+468)
+movl	(_Temp+468),%edx
+subl	$1,%edx
+movl	%edx,(_Temp+468)
+movl	(_Temp+468),%eax
+movl	$0,%ebx
+movl	(_Temp+464),%esi
+movl	%eax,(%ebx,%esi)
+movl	(_Temp+464),%edx
+addl	$4,%edx
+movl	%edx,(_Temp+452)
+movl	(_Temp+452),%eax
+movl	(_Temp+448),%ebx
+movl	(_Temp+420),%esi
+movl	%eax,(%ebx,%esi)
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+476)
+movl	$-4,%ebx
+movl	(_Temp+476),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+480)
+movl	$1,%eax
+cmpl	(_Temp+480),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+488)
+movl	$0,%eax
+cmpl	$1,%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+492)
+movl	(_Temp+488),%eax
+cmpl	$0,%eax
+je	.L58
+movl	(_Temp+492),%eax
+cmpl	$0,%eax
+je	.L58
+movl	$1,%eax
+jmp	.L59
+.L58:
+movl	$0,%eax
+.L59:
+movl	%eax,(_Temp+496)
+movl	(_Temp+496),%edx
+cmpl	$0,%edx
+jne	.L11
+pushl	$69
+leal	.LStr.S15,%edx
+movl	%edx,(_Temp+500)
+pushl	(_Temp+500)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L11:
+movl	$1,%edx
+imull	$4,%edx
+movl	%edx,(_Temp+504)
+jmp	.L12
+pushl	$69
+leal	.LStr.S14,%edx
+movl	%edx,(_Temp+516)
+pushl	(_Temp+516)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L12:
+movl	$2,%edx
+addl	$1,%edx
+movl	%edx,(_Temp+524)
+movl	(_Temp+524),%edx
+imull	$4,%edx
+movl	%edx,(_Temp+524)
+pushl	(_Temp+524)
+call	malloc
+movl	%eax,(_Temp+520)
+addl	$4,%esp
+movl	(_Temp+524),%eax
+movl	$4,%ecx
+cltd
+idivl	%ecx
+movl	%eax,(_Temp+524)
+movl	(_Temp+524),%edx
+subl	$1,%edx
+movl	%edx,(_Temp+524)
+movl	(_Temp+524),%eax
+movl	$0,%ebx
+movl	(_Temp+520),%esi
+movl	%eax,(%ebx,%esi)
+movl	(_Temp+520),%edx
+addl	$4,%edx
+movl	%edx,(_Temp+508)
+movl	(_Temp+508),%eax
+movl	(_Temp+504),%ebx
+movl	(_Temp+476),%esi
+movl	%eax,(%ebx,%esi)
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+532)
+movl	$-4,%ebx
+movl	(_Temp+532),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+536)
+movl	$0,%eax
+cmpl	(_Temp+536),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+544)
+movl	$0,%eax
+cmpl	$0,%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+548)
+movl	(_Temp+544),%eax
+cmpl	$0,%eax
+je	.L60
+movl	(_Temp+548),%eax
+cmpl	$0,%eax
+je	.L60
+movl	$1,%eax
+jmp	.L61
+.L60:
+movl	$0,%eax
+.L61:
+movl	%eax,(_Temp+552)
+movl	(_Temp+552),%edx
+cmpl	$0,%edx
+jne	.L13
+pushl	$70
+leal	.LStr.S15,%edx
+movl	%edx,(_Temp+556)
+pushl	(_Temp+556)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L13:
+movl	$0,%edx
+imull	$4,%edx
+movl	%edx,(_Temp+560)
+movl	(_Temp+560),%ebx
+movl	(_Temp+532),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+564)
+movl	$-4,%ebx
+movl	(_Temp+564),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+568)
+movl	$0,%eax
+cmpl	(_Temp+568),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+576)
+movl	$0,%eax
+cmpl	$0,%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+580)
+movl	(_Temp+576),%eax
+cmpl	$0,%eax
+je	.L62
+movl	(_Temp+580),%eax
+cmpl	$0,%eax
+je	.L62
+movl	$1,%eax
+jmp	.L63
+.L62:
+movl	$0,%eax
+.L63:
+movl	%eax,(_Temp+584)
+movl	(_Temp+584),%edx
+cmpl	$0,%edx
+jne	.L14
+pushl	$70
+leal	.LStr.S15,%edx
+movl	%edx,(_Temp+588)
+pushl	(_Temp+588)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L14:
+movl	$0,%edx
+imull	$4,%edx
+movl	%edx,(_Temp+592)
+call	_A_New
+movl	%eax,(_Temp+596)
+movl	(_Temp+596),%eax
+movl	(_Temp+592),%ebx
+movl	(_Temp+564),%esi
+movl	%eax,(%ebx,%esi)
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+604)
+movl	$-4,%ebx
+movl	(_Temp+604),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+608)
+movl	$1,%eax
+cmpl	(_Temp+608),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+616)
+movl	$0,%eax
+cmpl	$1,%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+620)
+movl	(_Temp+616),%eax
+cmpl	$0,%eax
+je	.L64
+movl	(_Temp+620),%eax
+cmpl	$0,%eax
+je	.L64
+movl	$1,%eax
+jmp	.L65
+.L64:
+movl	$0,%eax
+.L65:
+movl	%eax,(_Temp+624)
+movl	(_Temp+624),%edx
+cmpl	$0,%edx
+jne	.L15
+pushl	$71
+leal	.LStr.S15,%edx
+movl	%edx,(_Temp+628)
+pushl	(_Temp+628)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L15:
+movl	$1,%edx
+imull	$4,%edx
+movl	%edx,(_Temp+632)
+movl	(_Temp+632),%ebx
+movl	(_Temp+604),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+636)
+movl	$-4,%ebx
+movl	(_Temp+636),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+640)
+movl	$0,%eax
+cmpl	(_Temp+640),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+648)
+movl	$0,%eax
+cmpl	$0,%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+652)
+movl	(_Temp+648),%eax
+cmpl	$0,%eax
+je	.L66
+movl	(_Temp+652),%eax
+cmpl	$0,%eax
+je	.L66
+movl	$1,%eax
+jmp	.L67
+.L66:
+movl	$0,%eax
+.L67:
+movl	%eax,(_Temp+656)
+movl	(_Temp+656),%edx
+cmpl	$0,%edx
+jne	.L16
+pushl	$71
+leal	.LStr.S15,%edx
+movl	%edx,(_Temp+660)
+pushl	(_Temp+660)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L16:
+movl	$0,%edx
+imull	$4,%edx
+movl	%edx,(_Temp+664)
+call	_A_New
+movl	%eax,(_Temp+668)
+movl	(_Temp+668),%eax
+movl	(_Temp+664),%ebx
+movl	(_Temp+636),%esi
+movl	%eax,(%ebx,%esi)
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+676)
+movl	$-4,%ebx
+movl	(_Temp+676),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+680)
+movl	$1,%eax
+cmpl	(_Temp+680),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+688)
+movl	$0,%eax
+cmpl	$1,%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+692)
+movl	(_Temp+688),%eax
+cmpl	$0,%eax
+je	.L68
+movl	(_Temp+692),%eax
+cmpl	$0,%eax
+je	.L68
+movl	$1,%eax
+jmp	.L69
+.L68:
+movl	$0,%eax
+.L69:
+movl	%eax,(_Temp+696)
+movl	(_Temp+696),%edx
+cmpl	$0,%edx
+jne	.L17
+pushl	$72
+leal	.LStr.S15,%edx
+movl	%edx,(_Temp+700)
+pushl	(_Temp+700)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L17:
+movl	$1,%edx
+imull	$4,%edx
+movl	%edx,(_Temp+704)
+movl	(_Temp+704),%ebx
+movl	(_Temp+676),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+708)
+movl	$-4,%ebx
+movl	(_Temp+708),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+712)
+movl	$1,%eax
+cmpl	(_Temp+712),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+720)
+movl	$0,%eax
+cmpl	$1,%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+724)
+movl	(_Temp+720),%eax
+cmpl	$0,%eax
+je	.L70
+movl	(_Temp+724),%eax
+cmpl	$0,%eax
+je	.L70
+movl	$1,%eax
+jmp	.L71
+.L70:
+movl	$0,%eax
+.L71:
+movl	%eax,(_Temp+728)
+movl	(_Temp+728),%edx
+cmpl	$0,%edx
+jne	.L18
+pushl	$72
+leal	.LStr.S15,%edx
+movl	%edx,(_Temp+732)
+pushl	(_Temp+732)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L18:
+movl	$1,%edx
+imull	$4,%edx
+movl	%edx,(_Temp+736)
+call	_B_New
+movl	%eax,(_Temp+740)
+movl	(_Temp+740),%eax
+movl	(_Temp+736),%ebx
+movl	(_Temp+708),%esi
+movl	%eax,(%ebx,%esi)
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+752)
+movl	$-4,%ebx
+movl	(_Temp+752),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+756)
+movl	$0,%eax
+cmpl	(_Temp+756),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+764)
+movl	$0,%eax
+cmpl	$0,%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+768)
+movl	(_Temp+764),%eax
+cmpl	$0,%eax
+je	.L72
+movl	(_Temp+768),%eax
+cmpl	$0,%eax
+je	.L72
+movl	$1,%eax
+jmp	.L73
+.L72:
+movl	$0,%eax
+.L73:
+movl	%eax,(_Temp+772)
+movl	(_Temp+772),%edx
+cmpl	$0,%edx
+jne	.L19
+pushl	$73
+leal	.LStr.S15,%edx
+movl	%edx,(_Temp+776)
+pushl	(_Temp+776)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L19:
+movl	$0,%edx
+imull	$4,%edx
+movl	%edx,(_Temp+780)
+movl	(_Temp+780),%ebx
+movl	(_Temp+752),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+784)
+movl	$-4,%ebx
+movl	(_Temp+784),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+788)
+movl	$0,%eax
+cmpl	(_Temp+788),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+796)
+movl	$0,%eax
+cmpl	$0,%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+800)
+movl	(_Temp+796),%eax
+cmpl	$0,%eax
+je	.L74
+movl	(_Temp+800),%eax
+cmpl	$0,%eax
+je	.L74
+movl	$1,%eax
+jmp	.L75
+.L74:
+movl	$0,%eax
+.L75:
+movl	%eax,(_Temp+804)
+movl	(_Temp+804),%edx
+cmpl	$0,%edx
+jne	.L20
+pushl	$73
+leal	.LStr.S15,%edx
+movl	%edx,(_Temp+808)
+pushl	(_Temp+808)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L20:
+movl	$0,%edx
+imull	$4,%edx
+movl	%edx,(_Temp+812)
+movl	(_Temp+812),%ebx
+movl	(_Temp+784),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+816)
+movl	$0,%ebx
+movl	(_Temp+816),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+820)
+pushl	(_Temp+816)
+movl	(_Temp+820),%ebx
+movl	0(%ebx),%eax
+call	%eax
+movl	%eax,(_Temp+748)
+addl	$4,%esp
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+828)
+movl	$-4,%ebx
+movl	(_Temp+828),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+832)
+movl	$1,%eax
+cmpl	(_Temp+832),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+840)
+movl	$0,%eax
+cmpl	$1,%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+844)
+movl	(_Temp+840),%eax
+cmpl	$0,%eax
+je	.L76
+movl	(_Temp+844),%eax
+cmpl	$0,%eax
+je	.L76
+movl	$1,%eax
+jmp	.L77
+.L76:
+movl	$0,%eax
+.L77:
+movl	%eax,(_Temp+848)
+movl	(_Temp+848),%edx
+cmpl	$0,%edx
+jne	.L21
+pushl	$74
+leal	.LStr.S15,%edx
+movl	%edx,(_Temp+852)
+pushl	(_Temp+852)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L21:
+movl	$1,%edx
+imull	$4,%edx
+movl	%edx,(_Temp+856)
+movl	(_Temp+856),%ebx
+movl	(_Temp+828),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+860)
+movl	$-4,%ebx
+movl	(_Temp+860),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+864)
+movl	$0,%eax
+cmpl	(_Temp+864),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+872)
+movl	$0,%eax
+cmpl	$0,%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+876)
+movl	(_Temp+872),%eax
+cmpl	$0,%eax
+je	.L78
+movl	(_Temp+876),%eax
+cmpl	$0,%eax
+je	.L78
+movl	$1,%eax
+jmp	.L79
+.L78:
+movl	$0,%eax
+.L79:
+movl	%eax,(_Temp+880)
+movl	(_Temp+880),%edx
+cmpl	$0,%edx
+jne	.L22
+pushl	$74
+leal	.LStr.S15,%edx
+movl	%edx,(_Temp+884)
+pushl	(_Temp+884)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L22:
+movl	$0,%edx
+imull	$4,%edx
+movl	%edx,(_Temp+888)
+movl	(_Temp+888),%ebx
+movl	(_Temp+860),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+892)
+movl	$0,%ebx
+movl	(_Temp+892),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+896)
+pushl	(_Temp+892)
+movl	(_Temp+896),%ebx
+movl	0(%ebx),%eax
+call	%eax
+movl	%eax,(_Temp+824)
+addl	$4,%esp
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+904)
+movl	$-4,%ebx
+movl	(_Temp+904),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+908)
+movl	$1,%eax
+cmpl	(_Temp+908),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+916)
+movl	$0,%eax
+cmpl	$1,%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+920)
+movl	(_Temp+916),%eax
+cmpl	$0,%eax
+je	.L80
+movl	(_Temp+920),%eax
+cmpl	$0,%eax
+je	.L80
+movl	$1,%eax
+jmp	.L81
+.L80:
+movl	$0,%eax
+.L81:
+movl	%eax,(_Temp+924)
+movl	(_Temp+924),%edx
+cmpl	$0,%edx
+jne	.L23
+pushl	$75
+leal	.LStr.S15,%edx
+movl	%edx,(_Temp+928)
+pushl	(_Temp+928)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L23:
+movl	$1,%edx
+imull	$4,%edx
+movl	%edx,(_Temp+932)
+movl	(_Temp+932),%ebx
+movl	(_Temp+904),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+936)
+movl	$-4,%ebx
+movl	(_Temp+936),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+940)
+movl	$1,%eax
+cmpl	(_Temp+940),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+948)
+movl	$0,%eax
+cmpl	$1,%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+952)
+movl	(_Temp+948),%eax
+cmpl	$0,%eax
+je	.L82
+movl	(_Temp+952),%eax
+cmpl	$0,%eax
+je	.L82
+movl	$1,%eax
+jmp	.L83
+.L82:
+movl	$0,%eax
+.L83:
+movl	%eax,(_Temp+956)
+movl	(_Temp+956),%edx
+cmpl	$0,%edx
+jne	.L24
+pushl	$75
+leal	.LStr.S15,%edx
+movl	%edx,(_Temp+960)
+pushl	(_Temp+960)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L24:
+movl	$1,%edx
+imull	$4,%edx
+movl	%edx,(_Temp+964)
+movl	(_Temp+964),%ebx
+movl	(_Temp+936),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+968)
+movl	$0,%ebx
+movl	(_Temp+968),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+972)
+pushl	(_Temp+968)
+movl	(_Temp+972),%ebx
+movl	0(%ebx),%eax
+call	%eax
+movl	%eax,(_Temp+900)
+addl	$4,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+976)
+addl	$4,%esp
+popl	%ebp
+movl	(_Temp+976),%eax
+ret
+addl	$4,%esp
+popl	%ebp
+ret
+
+ .globl _Main_instanceofTest
+ .type _Main_instanceofTest,@function
+_Main_instanceofTest:
+pushl	%ebp
+movl	%esp,%ebp
+subl	$8,%esp
+leal	.LStr.S16,%edx
+movl	%edx,(_Temp+988)
+pushl	(_Temp+988)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+984)
+pushl	(_Temp+984)
+call	printf
+addl	$8,%esp
+call	_A_New
+movl	%eax,(_Temp+992)
+movl	(_Temp+992),%eax
+movl	%eax,-4(%ebp)
+call	_B_New
+movl	%eax,(_Temp+1000)
+movl	(_Temp+1000),%eax
+movl	%eax,-8(%ebp)
+leal	A,%edx
+movl	%edx,(_Temp+1020)
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+1024)
+movl	$0,%ebx
+movl	(_Temp+1024),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1028)
+movl	(_Temp+1020),%eax
+cmpl	(_Temp+1028),%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+1016)
+movl	(_Temp+1016),%edx
+cmpl	$0,%edx
+jne	.L25
+leal	.LStr.S17,%edx
+movl	%edx,(_Temp+1012)
+jmp	.L26
+.L25:
+leal	.LStr.S18,%edx
+movl	%edx,(_Temp+1012)
+.L26:
+pushl	(_Temp+1012)
+call	printf
+addl	$4,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1032)
+pushl	(_Temp+1032)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1012)
+pushl	(_Temp+1012)
+call	printf
+addl	$8,%esp
+leal	B,%edx
+movl	%edx,(_Temp+1048)
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+1052)
+movl	$0,%ebx
+movl	(_Temp+1052),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1056)
+movl	(_Temp+1048),%eax
+cmpl	(_Temp+1056),%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+1044)
+movl	(_Temp+1044),%edx
+cmpl	$0,%edx
+jne	.L27
+leal	.LStr.S17,%edx
+movl	%edx,(_Temp+1040)
+jmp	.L28
+.L27:
+leal	.LStr.S18,%edx
+movl	%edx,(_Temp+1040)
+.L28:
+pushl	(_Temp+1040)
+call	printf
+addl	$4,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1060)
+pushl	(_Temp+1060)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1040)
+pushl	(_Temp+1040)
+call	printf
+addl	$8,%esp
+leal	A,%edx
+movl	%edx,(_Temp+1076)
+movl	-8(%ebp),%eax
+movl	%eax,(_Temp+1080)
+movl	$0,%ebx
+movl	(_Temp+1080),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1084)
+movl	(_Temp+1076),%eax
+cmpl	(_Temp+1084),%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+1072)
+movl	(_Temp+1072),%edx
+cmpl	$0,%edx
+jne	.L29
+leal	.LStr.S17,%edx
+movl	%edx,(_Temp+1068)
+jmp	.L30
+.L29:
+leal	.LStr.S18,%edx
+movl	%edx,(_Temp+1068)
+.L30:
+pushl	(_Temp+1068)
+call	printf
+addl	$4,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1088)
+pushl	(_Temp+1088)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1068)
+pushl	(_Temp+1068)
+call	printf
+addl	$8,%esp
+leal	B,%edx
+movl	%edx,(_Temp+1104)
+movl	-8(%ebp),%eax
+movl	%eax,(_Temp+1108)
+movl	$0,%ebx
+movl	(_Temp+1108),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1112)
+movl	(_Temp+1104),%eax
+cmpl	(_Temp+1112),%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+1100)
+movl	(_Temp+1100),%edx
+cmpl	$0,%edx
+jne	.L31
+leal	.LStr.S17,%edx
+movl	%edx,(_Temp+1096)
+jmp	.L32
+.L31:
+leal	.LStr.S18,%edx
+movl	%edx,(_Temp+1096)
+.L32:
+pushl	(_Temp+1096)
+call	printf
+addl	$4,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1116)
+pushl	(_Temp+1116)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1096)
+pushl	(_Temp+1096)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1120)
+addl	$8,%esp
+popl	%ebp
+movl	(_Temp+1120),%eax
+ret
+addl	$8,%esp
+popl	%ebp
+ret
+
+ .globl _Main_operationTest
+ .type _Main_operationTest,@function
+_Main_operationTest:
+pushl	%ebp
+movl	%esp,%ebp
+subl	$8,%esp
+leal	.LStr.S19,%edx
+movl	%edx,(_Temp+1132)
+pushl	(_Temp+1132)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1128)
+pushl	(_Temp+1128)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1136)
+movl	$3,%eax
+movl	$4,%ebx
+movl	(_Temp+1136),%esi
+movl	%eax,(%ebx,%esi)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1144)
+movl	$2,%eax
+movl	$8,%ebx
+movl	(_Temp+1144),%esi
+movl	%eax,(%ebx,%esi)
+leal	.LStr.S20,%edx
+movl	%edx,(_Temp+1160)
+pushl	(_Temp+1160)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1156)
+pushl	(_Temp+1156)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1164)
+movl	$4,%ebx
+movl	(_Temp+1164),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1160)
+pushl	(_Temp+1160)
+leal	.LStr.S4,%edx
+movl	%edx,(_Temp+1156)
+pushl	(_Temp+1156)
+call	printf
+addl	$8,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1168)
+pushl	(_Temp+1168)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1156)
+pushl	(_Temp+1156)
+call	printf
+addl	$8,%esp
+leal	.LStr.S21,%edx
+movl	%edx,(_Temp+1180)
+pushl	(_Temp+1180)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1176)
+pushl	(_Temp+1176)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1184)
+movl	$8,%ebx
+movl	(_Temp+1184),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1180)
+pushl	(_Temp+1180)
+leal	.LStr.S4,%edx
+movl	%edx,(_Temp+1176)
+pushl	(_Temp+1176)
+call	printf
+addl	$8,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1188)
+pushl	(_Temp+1188)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1176)
+pushl	(_Temp+1176)
+call	printf
+addl	$8,%esp
+leal	.LStr.S22,%edx
+movl	%edx,(_Temp+1200)
+pushl	(_Temp+1200)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1196)
+pushl	(_Temp+1196)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1204)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1208)
+movl	$4,%ebx
+movl	(_Temp+1204),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1216)
+movl	$8,%ebx
+movl	(_Temp+1208),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1220)
+movl	(_Temp+1216),%edx
+addl	(_Temp+1220),%edx
+movl	%edx,(_Temp+1212)
+pushl	(_Temp+1212)
+leal	.LStr.S4,%edx
+movl	%edx,(_Temp+1196)
+pushl	(_Temp+1196)
+call	printf
+addl	$8,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1224)
+pushl	(_Temp+1224)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1196)
+pushl	(_Temp+1196)
+call	printf
+addl	$8,%esp
+leal	.LStr.S23,%edx
+movl	%edx,(_Temp+1236)
+pushl	(_Temp+1236)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1232)
+pushl	(_Temp+1232)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1240)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1244)
+movl	$4,%ebx
+movl	(_Temp+1240),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1252)
+movl	$8,%ebx
+movl	(_Temp+1244),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1256)
+movl	(_Temp+1252),%edx
+subl	(_Temp+1256),%edx
+movl	%edx,(_Temp+1248)
+pushl	(_Temp+1248)
+leal	.LStr.S4,%edx
+movl	%edx,(_Temp+1232)
+pushl	(_Temp+1232)
+call	printf
+addl	$8,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1260)
+pushl	(_Temp+1260)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1232)
+pushl	(_Temp+1232)
+call	printf
+addl	$8,%esp
+leal	.LStr.S24,%edx
+movl	%edx,(_Temp+1272)
+pushl	(_Temp+1272)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1268)
+pushl	(_Temp+1268)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1276)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1280)
+movl	$4,%ebx
+movl	(_Temp+1276),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1288)
+movl	$8,%ebx
+movl	(_Temp+1280),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1292)
+movl	(_Temp+1288),%eax
+movl	(_Temp+1292),%ecx
+cltd
+idivl	%ecx
+movl	%eax,(_Temp+1284)
+pushl	(_Temp+1284)
+leal	.LStr.S4,%edx
+movl	%edx,(_Temp+1268)
+pushl	(_Temp+1268)
+call	printf
+addl	$8,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1296)
+pushl	(_Temp+1296)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1268)
+pushl	(_Temp+1268)
+call	printf
+addl	$8,%esp
+leal	.LStr.S25,%edx
+movl	%edx,(_Temp+1308)
+pushl	(_Temp+1308)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1304)
+pushl	(_Temp+1304)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1312)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1316)
+movl	$4,%ebx
+movl	(_Temp+1312),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1324)
+movl	$8,%ebx
+movl	(_Temp+1316),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1328)
+movl	(_Temp+1324),%eax
+movl	(_Temp+1328),%ecx
+cltd
+idivl	%ecx
+movl	%edx,(_Temp+1320)
+pushl	(_Temp+1320)
+leal	.LStr.S4,%edx
+movl	%edx,(_Temp+1304)
+pushl	(_Temp+1304)
+call	printf
+addl	$8,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1332)
+pushl	(_Temp+1332)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1304)
+pushl	(_Temp+1304)
+call	printf
+addl	$8,%esp
+leal	.LStr.S26,%edx
+movl	%edx,(_Temp+1344)
+pushl	(_Temp+1344)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1340)
+pushl	(_Temp+1340)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1348)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1352)
+movl	$4,%ebx
+movl	(_Temp+1348),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1360)
+movl	$8,%ebx
+movl	(_Temp+1352),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1364)
+movl	(_Temp+1360),%eax
+cmpl	(_Temp+1364),%eax
+setl	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+1356)
+movl	(_Temp+1356),%edx
+cmpl	$0,%edx
+jne	.L33
+leal	.LStr.S17,%edx
+movl	%edx,(_Temp+1340)
+jmp	.L34
+.L33:
+leal	.LStr.S18,%edx
+movl	%edx,(_Temp+1340)
+.L34:
+pushl	(_Temp+1340)
+call	printf
+addl	$4,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1368)
+pushl	(_Temp+1368)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1340)
+pushl	(_Temp+1340)
+call	printf
+addl	$8,%esp
+leal	.LStr.S27,%edx
+movl	%edx,(_Temp+1380)
+pushl	(_Temp+1380)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1376)
+pushl	(_Temp+1376)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1384)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1388)
+movl	$4,%ebx
+movl	(_Temp+1384),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1396)
+movl	$8,%ebx
+movl	(_Temp+1388),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1400)
+movl	(_Temp+1396),%eax
+cmpl	(_Temp+1400),%eax
+setle	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+1392)
+movl	(_Temp+1392),%edx
+cmpl	$0,%edx
+jne	.L35
+leal	.LStr.S17,%edx
+movl	%edx,(_Temp+1376)
+jmp	.L36
+.L35:
+leal	.LStr.S18,%edx
+movl	%edx,(_Temp+1376)
+.L36:
+pushl	(_Temp+1376)
+call	printf
+addl	$4,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1404)
+pushl	(_Temp+1404)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1376)
+pushl	(_Temp+1376)
+call	printf
+addl	$8,%esp
+leal	.LStr.S28,%edx
+movl	%edx,(_Temp+1416)
+pushl	(_Temp+1416)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1412)
+pushl	(_Temp+1412)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1420)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1424)
+movl	$4,%ebx
+movl	(_Temp+1420),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1432)
+movl	$8,%ebx
+movl	(_Temp+1424),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1436)
+movl	(_Temp+1432),%eax
+cmpl	(_Temp+1436),%eax
+setg	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+1428)
+movl	(_Temp+1428),%edx
+cmpl	$0,%edx
+jne	.L37
+leal	.LStr.S17,%edx
+movl	%edx,(_Temp+1412)
+jmp	.L38
+.L37:
+leal	.LStr.S18,%edx
+movl	%edx,(_Temp+1412)
+.L38:
+pushl	(_Temp+1412)
+call	printf
+addl	$4,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1440)
+pushl	(_Temp+1440)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1412)
+pushl	(_Temp+1412)
+call	printf
+addl	$8,%esp
+leal	.LStr.S29,%edx
+movl	%edx,(_Temp+1452)
+pushl	(_Temp+1452)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1448)
+pushl	(_Temp+1448)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1456)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1460)
+movl	$4,%ebx
+movl	(_Temp+1456),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1468)
+movl	$8,%ebx
+movl	(_Temp+1460),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1472)
+movl	(_Temp+1468),%eax
+cmpl	(_Temp+1472),%eax
+setge	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+1464)
+movl	(_Temp+1464),%edx
+cmpl	$0,%edx
+jne	.L39
+leal	.LStr.S17,%edx
+movl	%edx,(_Temp+1448)
+jmp	.L40
+.L39:
+leal	.LStr.S18,%edx
+movl	%edx,(_Temp+1448)
+.L40:
+pushl	(_Temp+1448)
+call	printf
+addl	$4,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1476)
+pushl	(_Temp+1476)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1448)
+pushl	(_Temp+1448)
+call	printf
+addl	$8,%esp
+leal	.LStr.S30,%edx
+movl	%edx,(_Temp+1488)
+pushl	(_Temp+1488)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1484)
+pushl	(_Temp+1484)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1492)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1496)
+movl	$4,%ebx
+movl	(_Temp+1492),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1504)
+movl	$8,%ebx
+movl	(_Temp+1496),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1508)
+movl	(_Temp+1504),%eax
+cmpl	(_Temp+1508),%eax
+sete	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+1500)
+movl	(_Temp+1500),%edx
+cmpl	$0,%edx
+jne	.L41
+leal	.LStr.S17,%edx
+movl	%edx,(_Temp+1484)
+jmp	.L42
+.L41:
+leal	.LStr.S18,%edx
+movl	%edx,(_Temp+1484)
+.L42:
+pushl	(_Temp+1484)
+call	printf
+addl	$4,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1512)
+pushl	(_Temp+1512)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1484)
+pushl	(_Temp+1484)
+call	printf
+addl	$8,%esp
+leal	.LStr.S31,%edx
+movl	%edx,(_Temp+1524)
+pushl	(_Temp+1524)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1520)
+pushl	(_Temp+1520)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1528)
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1532)
+movl	$4,%ebx
+movl	(_Temp+1528),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1540)
+movl	$8,%ebx
+movl	(_Temp+1532),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1544)
+movl	(_Temp+1540),%eax
+cmpl	(_Temp+1544),%eax
+setne	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+1536)
+movl	(_Temp+1536),%edx
+cmpl	$0,%edx
+jne	.L43
+leal	.LStr.S17,%edx
+movl	%edx,(_Temp+1520)
+jmp	.L44
+.L43:
+leal	.LStr.S18,%edx
+movl	%edx,(_Temp+1520)
+.L44:
+pushl	(_Temp+1520)
+call	printf
+addl	$4,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1548)
+pushl	(_Temp+1548)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1520)
+pushl	(_Temp+1520)
+call	printf
+addl	$8,%esp
+movl	$1,%eax
+movl	%eax,-4(%ebp)
+movl	$0,%eax
+movl	%eax,-8(%ebp)
+leal	.LStr.S32,%edx
+movl	%edx,(_Temp+1568)
+pushl	(_Temp+1568)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1564)
+pushl	(_Temp+1564)
+call	printf
+addl	$8,%esp
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+1568)
+movl	(_Temp+1568),%edx
+cmpl	$0,%edx
+jne	.L45
+leal	.LStr.S17,%edx
+movl	%edx,(_Temp+1564)
+jmp	.L46
+.L45:
+leal	.LStr.S18,%edx
+movl	%edx,(_Temp+1564)
+.L46:
+pushl	(_Temp+1564)
+call	printf
+addl	$4,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1572)
+pushl	(_Temp+1572)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1564)
+pushl	(_Temp+1564)
+call	printf
+addl	$8,%esp
+leal	.LStr.S33,%edx
+movl	%edx,(_Temp+1584)
+pushl	(_Temp+1584)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1580)
+pushl	(_Temp+1580)
+call	printf
+addl	$8,%esp
+movl	-8(%ebp),%eax
+movl	%eax,(_Temp+1584)
+movl	(_Temp+1584),%edx
+cmpl	$0,%edx
+jne	.L47
+leal	.LStr.S17,%edx
+movl	%edx,(_Temp+1580)
+jmp	.L48
+.L47:
+leal	.LStr.S18,%edx
+movl	%edx,(_Temp+1580)
+.L48:
+pushl	(_Temp+1580)
+call	printf
+addl	$4,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1588)
+pushl	(_Temp+1588)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1580)
+pushl	(_Temp+1580)
+call	printf
+addl	$8,%esp
+leal	.LStr.S34,%edx
+movl	%edx,(_Temp+1600)
+pushl	(_Temp+1600)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1596)
+pushl	(_Temp+1596)
+call	printf
+addl	$8,%esp
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+1608)
+movl	-8(%ebp),%eax
+movl	%eax,(_Temp+1612)
+movl	(_Temp+1608),%eax
+cmpl	$0,%eax
+je	.L84
+movl	(_Temp+1612),%eax
+cmpl	$0,%eax
+je	.L84
+movl	$1,%eax
+jmp	.L85
+.L84:
+movl	$0,%eax
+.L85:
+movl	%eax,(_Temp+1604)
+movl	(_Temp+1604),%edx
+cmpl	$0,%edx
+jne	.L49
+leal	.LStr.S17,%edx
+movl	%edx,(_Temp+1596)
+jmp	.L50
+.L49:
+leal	.LStr.S18,%edx
+movl	%edx,(_Temp+1596)
+.L50:
+pushl	(_Temp+1596)
+call	printf
+addl	$4,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1616)
+pushl	(_Temp+1616)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1596)
+pushl	(_Temp+1596)
+call	printf
+addl	$8,%esp
+leal	.LStr.S35,%edx
+movl	%edx,(_Temp+1628)
+pushl	(_Temp+1628)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1624)
+pushl	(_Temp+1624)
+call	printf
+addl	$8,%esp
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+1636)
+movl	-8(%ebp),%eax
+movl	%eax,(_Temp+1640)
+movl	(_Temp+1636),%eax
+cmpl	$0,%eax
+jne	.L86
+movl	(_Temp+1640),%eax
+cmpl	$0,%eax
+je	.L87
+.L86:
+movl	$1,%eax
+jmp	.L88
+.L87:
+movl	$0,%eax
+.L88:
+movl	%eax,(_Temp+1632)
+movl	(_Temp+1632),%edx
+cmpl	$0,%edx
+jne	.L51
+leal	.LStr.S17,%edx
+movl	%edx,(_Temp+1624)
+jmp	.L52
+.L51:
+leal	.LStr.S18,%edx
+movl	%edx,(_Temp+1624)
+.L52:
+pushl	(_Temp+1624)
+call	printf
+addl	$4,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1644)
+pushl	(_Temp+1644)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1624)
+pushl	(_Temp+1624)
+call	printf
+addl	$8,%esp
+leal	.LStr.S36,%edx
+movl	%edx,(_Temp+1656)
+pushl	(_Temp+1656)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1652)
+pushl	(_Temp+1652)
+call	printf
+addl	$8,%esp
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+1660)
+cmpl	$0,(_Temp+1660)
+sete	%al
+movzbl	%al,%eax
+movl	%eax,(_Temp+1660)
+movl	(_Temp+1660),%edx
+cmpl	$0,%edx
+jne	.L53
+leal	.LStr.S17,%edx
+movl	%edx,(_Temp+1652)
+jmp	.L54
+.L53:
+leal	.LStr.S18,%edx
+movl	%edx,(_Temp+1652)
+.L54:
+pushl	(_Temp+1652)
+call	printf
+addl	$4,%esp
+leal	.LStr.S5,%edx
+movl	%edx,(_Temp+1664)
+pushl	(_Temp+1664)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1652)
+pushl	(_Temp+1652)
+call	printf
+addl	$8,%esp
+movl	8(%ebp),%eax
+movl	%eax,(_Temp+1668)
+addl	$8,%esp
+popl	%ebp
+movl	(_Temp+1668),%eax
+ret
+addl	$8,%esp
+popl	%ebp
+ret
+
+ .globl _A_New
+ .type _A_New,@function
+_A_New:
+pushl	%ebp
+movl	%esp,%ebp
+pushl	$4
+call	malloc
+movl	%eax,(_Temp+0)
+addl	$4,%esp
+leal	A,%edx
+movl	%edx,(_Temp+4)
+movl	(_Temp+4),%eax
+movl	$0,%ebx
+movl	(_Temp+0),%esi
+movl	%eax,(%ebx,%esi)
+popl	%ebp
+movl	(_Temp+0),%eax
+ret
+
+ .globl _B_New
+ .type _B_New,@function
+_B_New:
+pushl	%ebp
+movl	%esp,%ebp
+pushl	$4
+call	malloc
+movl	%eax,(_Temp+8)
+addl	$4,%esp
+leal	B,%edx
+movl	%edx,(_Temp+12)
+movl	(_Temp+12),%eax
+movl	$0,%ebx
+movl	(_Temp+8),%esi
+movl	%eax,(%ebx,%esi)
+popl	%ebp
+movl	(_Temp+8),%eax
+ret
+
+ .globl _Main_New
+ .type _Main_New,@function
+_Main_New:
+pushl	%ebp
+movl	%esp,%ebp
+pushl	$12
+call	malloc
+movl	%eax,(_Temp+16)
+addl	$4,%esp
+leal	Main,%edx
+movl	%edx,(_Temp+20)
+movl	(_Temp+20),%eax
+movl	$0,%ebx
+movl	(_Temp+16),%esi
+movl	%eax,(%ebx,%esi)
+popl	%ebp
+movl	(_Temp+16),%eax
+ret
+
+ .globl _Main_classCastTest
+ .type _Main_classCastTest,@function
+_Main_classCastTest:
+pushl	%ebp
+movl	%esp,%ebp
+subl	$8,%esp
+leal	.LStr.S37,%edx
+movl	%edx,(_Temp+1680)
+pushl	(_Temp+1680)
+leal	.LStr.S1,%edx
+movl	%edx,(_Temp+1676)
+pushl	(_Temp+1676)
+call	printf
+addl	$8,%esp
+call	_B_New
+movl	%eax,(_Temp+1684)
+movl	(_Temp+1684),%eax
+movl	%eax,-8(%ebp)
+leal	A,%edx
+movl	%edx,(_Temp+1696)
+movl	-8(%ebp),%eax
+movl	%eax,(_Temp+1700)
+movl	$0,%ebx
+movl	(_Temp+1700),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1704)
+movl	(_Temp+1696),%edx
+cmpl	(_Temp+1704),%edx
+jle	.L55
+pushl	$128
+leal	.LStr.S38,%edx
+movl	%edx,(_Temp+1708)
+pushl	(_Temp+1708)
+call	printf
+addl	$8,%esp
+pushl	$1
+call	exit
+addl	$4,%esp
+.L55:
+movl	-8(%ebp),%eax
+movl	%eax,(_Temp+1692)
+movl	(_Temp+1692),%eax
+movl	%eax,-4(%ebp)
+movl	-4(%ebp),%eax
+movl	%eax,(_Temp+1720)
+movl	$0,%ebx
+movl	(_Temp+1720),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1724)
+pushl	(_Temp+1720)
+movl	(_Temp+1724),%ebx
+movl	0(%ebx),%eax
+call	%eax
+movl	%eax,(_Temp+1716)
+addl	$4,%esp
+addl	$8,%esp
+popl	%ebp
+ret
+
+ .globl main
+ .type main,@function
+main:
+pushl	%ebp
+movl	%esp,%ebp
+call	_Main_New
+movl	%eax,(_Temp+1752)
+movl	$0,%ebx
+movl	(_Temp+1752),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1760)
+pushl	(_Temp+1752)
+movl	(_Temp+1760),%ebx
+movl	0(%ebx),%eax
+call	%eax
+movl	%eax,(_Temp+1748)
+addl	$4,%esp
+movl	$0,%ebx
+movl	(_Temp+1748),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1768)
+pushl	(_Temp+1748)
+movl	(_Temp+1768),%ebx
+movl	4(%ebx),%eax
+call	%eax
+movl	%eax,(_Temp+1744)
+addl	$4,%esp
+movl	$0,%ebx
+movl	(_Temp+1744),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1776)
+pushl	(_Temp+1744)
+movl	(_Temp+1776),%ebx
+movl	8(%ebx),%eax
+call	%eax
+movl	%eax,(_Temp+1740)
+addl	$4,%esp
+movl	$0,%ebx
+movl	(_Temp+1740),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1784)
+pushl	(_Temp+1740)
+movl	(_Temp+1784),%ebx
+movl	12(%ebx),%eax
+call	%eax
+movl	%eax,(_Temp+1736)
+addl	$4,%esp
+movl	$0,%ebx
+movl	(_Temp+1736),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1792)
+pushl	(_Temp+1736)
+movl	(_Temp+1792),%ebx
+movl	16(%ebx),%eax
+call	%eax
+movl	%eax,(_Temp+1732)
+addl	$4,%esp
+movl	$0,%ebx
+movl	(_Temp+1732),%esi
+movl	(%ebx,%esi),%eax
+movl	%eax,(_Temp+1800)
+pushl	(_Temp+1732)
+movl	(_Temp+1800),%ebx
+movl	20(%ebx),%eax
+call	%eax
+movl	%eax,(_Temp+1728)
+addl	$4,%esp
+call	_Main_classCastTest
+movl	%eax,(_Temp+1804)
+popl	%ebp
+ret
+
