@@ -49,7 +49,7 @@ namespace lab3
     class Temp
     {
         string name;
-        int offset=999999999;
+        int offset=999999999;//表示在 .data 段中相对于临时变量首地址的偏移
         bool isConst=false;
         int value;
         static unsigned int count;
@@ -187,8 +187,8 @@ namespace lab3
         Temp op0;
         Temp op1;
         Temp op2;
-        string str;
-        string strName;
+        string str;//该字符串的实际内容
+        string strName;//该字符串的名字，用于汇编语言时调用
         static map<const string,const string> rodataStrs;
         static int strNameCount;
         shared_ptr<VirtualTable> vt;
